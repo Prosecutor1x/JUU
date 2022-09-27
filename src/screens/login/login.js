@@ -10,26 +10,24 @@ import {
   Linking,
   ActivityIndicator,
 } from 'react-native';
-import React, {useContext, useEffect} from 'react';
-
+import React, {useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
-
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
+import {AuthContext} from '../../components/context';
 
-const Createaccount = () => {
+const Login = () => {
   const navb = useNavigation();
-  const [number, onChangeNumber] = React.useState(null);
-
+  const {signIn} = React.useContext(AuthContext);
   const [data, setData] = React.useState({
     mobileNumber: '',
     check_textInputChange: false,
     icShown: false,
   });
   const textInputChange = (val) => {
-    if (val.length != 1) {
+    if (val.length != 0) {
       setData({
         ...data,
         mobileNumber: val,
@@ -66,15 +64,14 @@ const Createaccount = () => {
       </View>
 
       <Animatable.View animation={'fadeInUpBig'} style={styles.containersec}>
-        <Text style={styles.login}>Create Account</Text>
+        <Text style={styles.login}>Log In</Text>
         <Text style={styles.Heading}>Mobile Number</Text>
         <View style={{flexDirection: 'row'}}>
           <TextInput
             style={styles.input}
             onChangeText={(val) => textInputChange(val)}
-            value={number}
             keyboardType="numeric"
-            maxLength={10}
+            maxLength={20}
             cursorColor="black"
             placeholder="Enter Mobile Number"
           />
@@ -160,7 +157,7 @@ const Createaccount = () => {
             size={18}
             color="black"
           />
-          <Text style={styles.tandc}>Already have an account? </Text>
+          <Text style={styles.tandc}>Create an account? </Text>
 
           <Text
             style={{
@@ -170,8 +167,8 @@ const Createaccount = () => {
               marginVertical: 20,
               textDecorationLine: 'underline',
             }}
-            onPress={() => navb.navigate('LogIn')}>
-            LogIn
+            onPress={() => navb.navigate('CreateAccount')}>
+            Sign Up
           </Text>
         </View>
       </Animatable.View>
@@ -179,7 +176,7 @@ const Createaccount = () => {
   );
 };
 
-export default Createaccount;
+export default Login;
 const {height} = Dimensions.get('screen');
 const height_logo = height * 0.33;
 
@@ -250,6 +247,5 @@ const styles = StyleSheet.create({
     marginVertical: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 40,
   },
 });

@@ -4,10 +4,11 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Createaccount from '../screens/sighnup/createaccoutn';
 
-import Home from '../screens/home';
+import Home from '../screens/sighnup/Enterdetails';
 import Obone from '../screens/oboarding/ob1';
 import OtpVerification from '../screens/sighnup/otpVerification';
-import LoginUser from '../screens/loginUsr';
+import LoginUser from '../screens/login/loginUsr';
+import EnterDetails from '../screens/sighnup/Enterdetails';
 
 
 
@@ -24,6 +25,8 @@ const OBnav = () => {
         <Stack.Screen name="CreateAccount" component={Createaccount} />
         <Stack.Screen name="OTP" component={OtpVerification} />
         <Stack.Screen name="LogIn" component={LoginUser} />
+        <Stack.Screen name="Details" component={EnterDetails} />
+        
         
        
       </Stack.Navigator>

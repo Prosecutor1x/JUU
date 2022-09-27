@@ -10,7 +10,7 @@ import {
   Linking,
   ActivityIndicator,
 } from 'react-native';
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
@@ -18,27 +18,29 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
+import {AuthContext} from '../../components/context';
 
-const Createaccount = () => {
+const LoginUser = () => {
   const navb = useNavigation();
-  const [number, onChangeNumber] = React.useState(null);
+
+  const {signIn} = React.useContext(AuthContext);
 
   const [data, setData] = React.useState({
-    mobileNumber: '',
+    username: '',
     check_textInputChange: false,
     icShown: false,
   });
   const textInputChange = (val) => {
-    if (val.length != 1) {
+    if (val.length != 0) {
       setData({
         ...data,
-        mobileNumber: val,
+        username: val,
         check_textInputChange: true,
       });
     } else {
       setData({
         ...data,
-        mobileNumber: val,
+        username: val,
         check_textInputChange: false,
       });
     }
@@ -48,6 +50,9 @@ const Createaccount = () => {
       ...data,
       icShown: !data.icShown,
     });
+  };
+  const loginHandle = (username) => {
+    signIn(username);
   };
 
   return (
@@ -66,17 +71,16 @@ const Createaccount = () => {
       </View>
 
       <Animatable.View animation={'fadeInUpBig'} style={styles.containersec}>
-        <Text style={styles.login}>Create Account</Text>
-        <Text style={styles.Heading}>Mobile Number</Text>
+        <Text style={styles.login}>Log In</Text>
+        <Text style={styles.Heading}>User Name</Text>
         <View style={{flexDirection: 'row'}}>
           <TextInput
             style={styles.input}
             onChangeText={(val) => textInputChange(val)}
-            value={number}
-            keyboardType="numeric"
-            maxLength={10}
+            keyboardType="default"
+            maxLength={20}
             cursorColor="black"
-            placeholder="Enter Mobile Number"
+            placeholder="Enter User Name"
           />
 
           {data.check_textInputChange ? (
@@ -137,7 +141,7 @@ const Createaccount = () => {
           <TouchableOpacity
             style={styles.loginb}
             onPress={() => {
-              navb.navigate('OTP');
+              loginHandle(data.username);
             }}>
             <LinearGradient
               colors={['#ffa500', '#FF5C00']}
@@ -160,7 +164,7 @@ const Createaccount = () => {
             size={18}
             color="black"
           />
-          <Text style={styles.tandc}>Already have an account? </Text>
+          <Text style={styles.tandc}>Create an account? </Text>
 
           <Text
             style={{
@@ -170,8 +174,8 @@ const Createaccount = () => {
               marginVertical: 20,
               textDecorationLine: 'underline',
             }}
-            onPress={() => navb.navigate('LogIn')}>
-            LogIn
+            onPress={() => navb.navigate('CreateAccount')}>
+            Sign Up
           </Text>
         </View>
       </Animatable.View>
@@ -179,7 +183,7 @@ const Createaccount = () => {
   );
 };
 
-export default Createaccount;
+export default LoginUser;
 const {height} = Dimensions.get('screen');
 const height_logo = height * 0.33;
 
@@ -250,6 +254,5 @@ const styles = StyleSheet.create({
     marginVertical: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 40,
   },
 });
