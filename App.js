@@ -10,6 +10,11 @@ import * as Animatable from 'react-native-animatable';
 import {ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OBnav from './src/navigation/obnav';
+// import Bugsnag from '@bugsnag/expo';
+
+
+
+// Bugsnag.start()
 
 export default function App() {
   const [isFirstLaunch, setisFirstLaunch] = React.useState(null);
