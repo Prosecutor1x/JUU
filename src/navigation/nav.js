@@ -15,7 +15,7 @@ const Stack= createNativeStackNavigator();
 
 const Nav = () => {
   return (
-  <Stack.Navigator> 
+  <Stack.Navigator initialRouteName='Details'> 
     <Stack.Screen name="CreateAccount" component={Createaccount} />
     <Stack.Screen name="OTP" component={OtpVerification} />
     <Stack.Screen name="LogIn" component={LoginUser} />

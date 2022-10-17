@@ -19,6 +19,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
 
+
 const Createaccount = () => {
   const navb = useNavigation();
   const [number, onChangeNumber] = React.useState(null);
@@ -51,6 +52,7 @@ const Createaccount = () => {
   };
 
   return (
+  
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
 
@@ -175,7 +177,8 @@ const Createaccount = () => {
           </Text>
         </View>
       </Animatable.View>
-    </View>
+      </View>
+  
   );
 };
 
