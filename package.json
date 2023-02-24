@@ -9,7 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@bugsnag/expo": "^44.0.0",
     "@expo-google-fonts/inter": "^0.2.2",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/netinfo": "9.3.0",
@@ -19,7 +18,6 @@
     "expo": "~46.0.9",
     "expo-application": "~4.2.2",
     "expo-barcode-scanner": "~11.4.0",
-    "expo-constants": "~13.2.4",
     "expo-crypto": "~11.0.0",
     "expo-device": "~4.3.0",
     "expo-file-system": "~14.1.0",
