@@ -20,11 +20,11 @@ const Profile = () => {
   };
   return (
     <View style={styles.container}>
-      <View>
-        <Image
+      <View className="bg-green-600">
+        {/* <Image
           source={require('../../../assets/images/R1.png')}
           resizeMode="stretch"
-        />
+        /> */}
       </View>
 
       <View style={styles.superheader}>
@@ -101,6 +101,7 @@ export default Profile;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 200,
     flex: 1,
     width: '100%',
     backgroundColor: '#E5E5E5',

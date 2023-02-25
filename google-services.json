@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "586539393783",
+    "project_id": "billez-a8126",
+    "storage_bucket": "billez-a8126.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586539393783:android:87fc1024c335e2d83669f2",
+        "android_client_info": {
+          "package_name": "com.billez.scan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586539393783-hb5nlr799hb32n55mugtkrvvf6muajda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfX5OLfW2GCfGTQ5RbyKRZSvxsb3F7w4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586539393783-hb5nlr799hb32n55mugtkrvvf6muajda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

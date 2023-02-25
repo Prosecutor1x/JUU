@@ -1,13 +1,22 @@
+import { addDoc, collection } from 'firebase/firestore';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Image,
+  Button,
 } from 'react-native';
+import { db } from '../../config/firebaseconfig';
 
 
 export const Item = ({item, onPress, backgroundColor, textColor}) => {
+  const addUserData =async ()=>{
+    const userSnap = collection(db, "users");
+    await addDoc(userSnap, {
+      name: "Kingshuk Sarkar"
+    })
+  }
   return (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
       <View>
@@ -20,6 +29,7 @@ export const Item = ({item, onPress, backgroundColor, textColor}) => {
       <View style={styles.price}>
         <Text style={[styles.price, textColor]}> Rs {item.price}</Text>
       </View>
+      <TouchableOpacity onPress={addUserData}><Text>Add Data</Text></TouchableOpacity>
     </TouchableOpacity>
   );
 };
