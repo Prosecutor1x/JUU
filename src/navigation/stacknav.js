@@ -14,6 +14,8 @@ import OtpVerification from '../screens/sighnup/otpVerification';
 import LoginUser from '../screens/login/loginUsr';
 import Createaccount from '../screens/sighnup/createaccoutn';
 import Obone from '../screens/oboarding/ob1';
+import HomeMain from '../screens/MainScreens/home/Home.main';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +56,11 @@ const NavS = () => {
           headerBackVisible: false,
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+        name="HomeMain"
+        component={HomeMain}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
@@ -176,5 +183,7 @@ const NavS = () => {
     </Stack.Navigator>
   );
 };
+
+
 
 export default NavS;

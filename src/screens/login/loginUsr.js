@@ -18,12 +18,12 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
-import {AuthContext} from '../../components/context';
+
 
 const LoginUser = () => {
   const navb = useNavigation();
 
-  const {signIn} = React.useContext(AuthContext);
+  
 
   const [data, setData] = React.useState({
     username: '',
@@ -51,9 +51,7 @@ const LoginUser = () => {
       icShown: !data.icShown,
     });
   };
-  const loginHandle = (username) => {
-    signIn(username);
-  };
+ 
 
   return (
     <View style={styles.container}>
@@ -140,9 +138,7 @@ const LoginUser = () => {
         <Animatable.View animation={'zoomIn'} style={styles.loginb} delay={500}>
           <TouchableOpacity
             style={styles.loginb}
-            onPress={() => {
-              loginHandle(data.username);
-            }}>
+            onPress={() => navb.navigate('OTP')}>
             <LinearGradient
               colors={['#ffa500', '#FF5C00']}
               style={styles.loginb}>

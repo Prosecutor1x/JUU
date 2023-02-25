@@ -126,8 +126,8 @@ const Obone = () => {
           DoneButtonComponent={Done}
           NextButtonComponent={Next}
           SkipButtonComponent={Skip}
-          onSkip={() => navo.replace('CreateAccount')}
-          onDone={() => navo.navigate('CreateAccount')}
+          onSkip={() => navo.replace('LogIn')}
+          onDone={() => navo.navigate('LogIn')}
           pages={[
             {
               backgroundColor: '#fff',
