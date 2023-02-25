@@ -28,7 +28,7 @@ const Shoppingcart = () => {
  
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <FlatList
         data={products}
         renderItem={renderItem}
