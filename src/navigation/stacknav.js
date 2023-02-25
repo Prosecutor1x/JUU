@@ -1,11 +1,10 @@
-
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/MainScreens/home/Home';
 import Shoppingcart from '../screens/MainScreens/cart/shoppingcart';
 import Profile from '../screens/MainScreens/profile';
-import {AntDesign} from '@expo/vector-icons';
-import {FontAwesome} from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import Totalbill from '../screens/MainScreens/cart/totalbill';
 import Paid from '../screens/MainScreens/payment/successful';
 import Previousbill from '../screens/MainScreens/profile/previousbills';
@@ -19,22 +18,41 @@ import Obone from '../screens/oboarding/ob1';
 const Stack = createNativeStackNavigator();
 
 const NavS = () => {
-  const navs=useNavigation()
+  const navs = useNavigation();
   return (
     <Stack.Navigator initialRouteName="Onboard">
-      
-       <Stack.Screen name="Onboard" component={Obone} options={{headerShown:false}}/>
-      <Stack.Screen name="CreateAccount" component={Createaccount}  options={{headerShown:false}}/>
-      <Stack.Screen name="OTP" component={OtpVerification} options={{headerShown:false}}/>
-      <Stack.Screen name="LogIn" component={LoginUser} options={{headerShown:false}}/>
-      <Stack.Screen name="Details" component={EnterDetails} options={{headerShown:false}}/>
-     
+      <Stack.Screen
+        name="Onboard"
+        component={Obone}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CreateAccount"
+        component={Createaccount}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OTP"
+        component={OtpVerification}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={EnterDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="LogIn"
+        component={LoginUser}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name="Profile"
         component={Profile}
         options={{
           headerBackVisible: false,
-          headerShown:false
+          headerShown: false,
         }}
       />
 
@@ -50,8 +68,8 @@ const NavS = () => {
               name="shoppingcart"
               size={24}
               color={color}
-              style={{right: 10}}
-              onPress={()=>navs.navigate('Cart')}
+              style={{ right: 10 }}
+              onPress={() => navs.navigate('Cart')}
             />
           ),
           headerLeft: (color) => (
@@ -59,8 +77,8 @@ const NavS = () => {
               name="user-circle-o"
               size={24}
               color={color}
-              style={{left: 10}}
-              onPress={()=>navs.navigate('Profile')}
+              style={{ left: 10 }}
+              onPress={() => navs.navigate('Profile')}
             />
           ),
           headerTitleAlign: 'center',
@@ -83,8 +101,8 @@ const NavS = () => {
               name="shoppingcart"
               size={24}
               color={color}
-              style={{right: 10}}
-              onPress={()=>navs.navigate('Cart')}
+              style={{ right: 10 }}
+              onPress={() => navs.navigate('Cart')}
             />
           ),
           headerLeft: (color) => (
@@ -92,8 +110,8 @@ const NavS = () => {
               name="user-circle-o"
               size={24}
               color={color}
-              style={{left: 10}}
-              onPress={()=>navs.navigate('Profile')}
+              style={{ left: 10 }}
+              onPress={() => navs.navigate('Profile')}
             />
           ),
           headerTitleAlign: 'center',
@@ -107,16 +125,14 @@ const NavS = () => {
         name="Total"
         component={Totalbill}
         options={{
-          
-
           title: 'Total Bill',
           headerRight: (color) => (
             <FontAwesome
               name="user-circle-o"
               size={24}
               color={color}
-              style={{right: 10}}
-              onPress={()=>navs.navigate('Profile')}
+              style={{ right: 10 }}
+              onPress={() => navs.navigate('Profile')}
             />
           ),
           headerTitleAlign: 'center',
@@ -126,41 +142,38 @@ const NavS = () => {
           },
         }}
       />
-      <Stack.Screen name="Paid" 
-      component={Paid}
-      options={{
-        headerBackVisible: false,
-        headerShown:false
-      }}/>
-      
-      
-      <Stack.Screen name="Previousbills" 
-      component={Previousbill}
-      options={{
-      
-        title: 'Previous Bill',
+      <Stack.Screen
+        name="Paid"
+        component={Paid}
+        options={{
+          headerBackVisible: false,
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Previousbills"
+        component={Previousbill}
+        options={{
+          title: 'Previous Bill',
           headerRight: (color) => (
             <AntDesign
               name="shoppingcart"
               size={24}
               color={color}
-              style={{right: 10}}
-              onPress={()=>navs.navigate('Cart')}
+              style={{ right: 10 }}
+              onPress={() => navs.navigate('Cart')}
             />
           ),
-       
+
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontSize: 25,
             fontWeight: '600',
           },
-      
-      }}
-      
-      
+        }}
       />
     </Stack.Navigator>
-    
   );
 };
 

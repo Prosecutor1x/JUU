@@ -1,15 +1,11 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View, Image} from 'react-native';
-import Nav from './src/navigation/nav';
-import {NavigationContainer} from '@react-navigation/native';
-import {AuthContext} from './src/components/context';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import NavS from './src/navigation/stacknav';
 import * as Animatable from 'react-native-animatable';
-import {ActivityIndicator} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import OBnav from './src/navigation/obnav';
+import { ActivityIndicator } from 'react-native';
 
 export default function App() {
   const [isFirstLaunch, setisFirstLaunch] = React.useState(true);
@@ -40,9 +36,9 @@ export default function App() {
             duraton="500"
             delay={400}
             source={require('./src/assets/images/path24.png')}
-            style={{height: 136, width: 186, marginTop: '40%', left: 40}}
+            style={{ height: 136, width: 186, marginTop: '40%', left: 40 }}
           />
-          <Animatable.View animation="slideInRight" style={{marginTop: '40%'}}>
+          <Animatable.View animation="slideInRight" style={{ marginTop: '40%' }}>
             <Image
               source={require('./src/assets/images/g26.png')}
               resizeMode="contain"
@@ -60,7 +56,7 @@ export default function App() {
             />
           </Animatable.View>
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./src/assets/images/g38.png')}
             resizeMode="contain"
@@ -75,7 +71,7 @@ export default function App() {
         <ActivityIndicator
           size={80}
           color={'blue'}
-          style={{marginTop: '30%'}}
+          style={{ marginTop: '30%' }}
         />
       </View>
     );
@@ -83,14 +79,14 @@ export default function App() {
     if (isFirstLaunch == null) {
       return (
         <NavigationContainer>
-          <NavS/>
+          <NavS />
           <StatusBar style="auto" />
         </NavigationContainer>
       );
     } else if (isFirstLaunch == true) {
       return (
         <NavigationContainer>
-          <NavS/>
+          <NavS />
           <StatusBar style="auto" />
         </NavigationContainer>
       );
