@@ -1,27 +1,34 @@
-import {View, Text} from 'react-native';
+
 import React from 'react';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import Home from '../screens/MainScreens/home/Home';
-
 import Shoppingcart from '../screens/MainScreens/cart/shoppingcart';
-
 import Profile from '../screens/MainScreens/profile';
-
 import {AntDesign} from '@expo/vector-icons';
 import {FontAwesome} from '@expo/vector-icons';
 import Totalbill from '../screens/MainScreens/cart/totalbill';
 import Paid from '../screens/MainScreens/payment/successful';
 import Previousbill from '../screens/MainScreens/profile/previousbills';
 import { useNavigation } from '@react-navigation/native';
+import EnterDetails from '../screens/sighnup/Enterdetails';
+import OtpVerification from '../screens/sighnup/otpVerification';
+import LoginUser from '../screens/login/loginUsr';
+import Createaccount from '../screens/sighnup/createaccoutn';
+import Obone from '../screens/oboarding/ob1';
 
 const Stack = createNativeStackNavigator();
 
 const NavS = () => {
   const navs=useNavigation()
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Onboard">
+      
+       <Stack.Screen name="Onboard" component={Obone} options={{headerShown:false}}/>
+      <Stack.Screen name="CreateAccount" component={Createaccount}  options={{headerShown:false}}/>
+      <Stack.Screen name="OTP" component={OtpVerification} options={{headerShown:false}}/>
+      <Stack.Screen name="LogIn" component={LoginUser} options={{headerShown:false}}/>
+      <Stack.Screen name="Details" component={EnterDetails} options={{headerShown:false}}/>
+     
       <Stack.Screen
         name="Profile"
         component={Profile}

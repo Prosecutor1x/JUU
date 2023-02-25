@@ -17,10 +17,11 @@ import {LinearGradient} from 'expo-linear-gradient';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigation } from '@react-navigation/native';
 
 const EnterDetails = () => {
 
-
+  const nav=useNavigation();
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, 'Too Short!')
@@ -38,32 +39,30 @@ const EnterDetails = () => {
 
   const [verified, setVerified] = React.useState(true);
 
-   const {signUp} = React.useContext(AuthContext);
 
-  //  const [data, setData] = React.useState({
-  //   userName: '',
-  //   check_textInputChange: false,
-  //   icShown: false,
-  // });
-  // const textInputChange = (val) => {
-  //   if (val.length != 1) {
-  //     setData({
-  //       ...data,
-  //       userName: val,
-  //       check_textInputChange: true,
-  //     });
-  //   } else {
-  //     setData({
-  //       ...data,
-  //       userName: val,
-  //       check_textInputChange: false,
-  //     });
-  //   }
-  // };
+   const [data, setData] = React.useState({
+    userName: '',
+    check_textInputChange: false,
+    icShown: false,
+  });
+  const textInputChange = (val) => {
+    if (val.length != 1) {
+      setData({
+        ...data,
+        userName: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        userName: val,
+        check_textInputChange: false,
+      });
+    }
+  };
 
-   const signupHandler = (values) => {
-      signUp(values);
-    };
+ 
+      
 
   useEffect(() => {
     setTimeout(() => {
@@ -92,11 +91,10 @@ const EnterDetails = () => {
 
     }}
       validationSchema={SignupSchema}
-       onSubmit={(values)=>signupHandler(values.name)}
       // onSubmit={values=> Alert.alert(JSON.stringify(values))}
       
       >
-        {({values,errors,touched,handleSubmit,handleChange,setFieldTouched,isValid})=>(
+        {({values,errors,touched,handleChange,setFieldTouched,isValid})=>(
 
         
       <View View style={styles.container}>
@@ -150,11 +148,8 @@ const EnterDetails = () => {
 
         <TouchableOpacity
           style={styles.Next}
-          onPress={ 
-            // signupHandler(data.userName);
-            handleSubmit
-          }
-          disabled={!isValid} >
+          onPress={() => nav.navigate('Home')}
+          >
           
           <LinearGradient colors={['#ffa500', '#FF5C00']} style={styles.Next}>
             <Text

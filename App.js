@@ -11,122 +11,16 @@ import {ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OBnav from './src/navigation/obnav';
 
-
 export default function App() {
-  const [isFirstLaunch, setisFirstLaunch] = React.useState(null);
-
-  const initialLoginState = {
-    isLoading: true,
-    userName: null,
-    userToken: null,
-    otpNumber: null,
-  };
-
-  const loginReducer = (prevState, action) => {
-    switch (action.type) {
-      case 'RETRIEVE_TOKEN':
-        return {
-          ...prevState,
-          userToken: action.token,
-          isLoading: false,
-        };
-      case 'LOGIN':
-        return {
-          ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading: false,
-        };
-      case 'LOGOUT':
-        return {
-          ...prevState,
-          userToken: null,
-          userName: null,
-          isLoading: false,
-        };
-      case 'REGISTER':
-        return {
-          ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading: false,
-        };
-    }
-  };
-
-  const [loginState, dispatchAction] = React.useReducer(
-    loginReducer,
-    initialLoginState,
-  );
-
-  const authContext = React.useMemo(() => ({
-    signIn: async (userName) => {
-      let userToken;
-      userToken = null;
-
-      if (userName == 'user') {
-        try {
-          userToken = 'ABCD';
-          await AsyncStorage.setItem('userToken', userToken);
-        } catch (e) {
-          console.log(eror);
-        }
-      }
-      console.log('user token: ', userToken);
-      dispatchAction({type: 'LOGIN', id: userName, token: userToken});
-    },
-    signOut: async () => {
-      try {
-        await AsyncStorage.removeItem('userToken');
-      } catch (e) {
-        console.log(eror);
-      }
-
-      dispatchAction({type: 'LOGOUT'});
-    },
-    signUp: async (userName) => {
-      let userToken;
-      userToken = null;
-
-      if (userName == 'abc') {
-        try {
-          userToken = 'ABCD';
-          await AsyncStorage.setItem('userToken', userToken);
-        } catch (e) {
-          console.log(eror);
-        }
-      }
-      console.log('user token: ', userToken);
-      dispatchAction({type: 'REGISTER', id: userName, token: userToken});
-    },
-  }));
-
+  const [isFirstLaunch, setisFirstLaunch] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
   useEffect(() => {
-    setTimeout(async () => {
-      let userToken;
-      userToken = null;
-      try {
-        userToken = await AsyncStorage.getItem('userToken');
-      } catch (e) {
-        console.log(eror);
-      }
-
-      dispatchAction({type: 'RETRIEVE_TOKEN', token: userToken});
-    }, 2000);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
   }, []);
 
-  useEffect(() => {
-    AsyncStorage.getItem('alreadyLaunched').then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem('alreadyLaunched', 'true');
-        setisFirstLaunch(true);
-      } else {
-        setisFirstLaunch(false);
-      }
-    });
-  }, []);
-
-  if (loginState.isLoading) {
+  if (isLoading) {
     return (
       <View
         style={{
@@ -187,24 +81,18 @@ export default function App() {
     );
   } else {
     if (isFirstLaunch == null) {
-      return null;
+      return (
+        <NavigationContainer>
+          <NavS/>
+          <StatusBar style="auto" />
+        </NavigationContainer>
+      );
     } else if (isFirstLaunch == true) {
       return (
-        <AuthContext.Provider value={authContext}>
-          <NavigationContainer>
-            {loginState.userToken != null ? <NavS /> : <OBnav />}
-            <StatusBar style="auto" />
-          </NavigationContainer>
-        </AuthContext.Provider>
-      );
-    } else {
-      return (
-        <AuthContext.Provider value={authContext}>
-          <NavigationContainer>
-            {loginState.userToken != null ? <NavS /> : <OBnav />}
-            <StatusBar style="auto" />
-          </NavigationContainer>
-        </AuthContext.Provider>
+        <NavigationContainer>
+          <NavS/>
+          <StatusBar style="auto" />
+        </NavigationContainer>
       );
     }
   }

@@ -15,11 +15,13 @@ const Stack = createNativeStackNavigator();
 const OBnav = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Onboard" component={Obone} />
-      <Stack.Screen name="CreateAccount" component={Createaccount} />
-      <Stack.Screen name="OTP" component={OtpVerification} />
-      <Stack.Screen name="LogIn" component={LoginUser} />
-      <Stack.Screen name="Details" component={EnterDetails} />
+      <Stack.Screen name="Onboard" component={Obone} options={{headerShown:false}}/>
+      <Stack.Screen name="CreateAccount" component={Createaccount}  options={{headerShown:false}}/>
+      <Stack.Screen name="OTP" component={OtpVerification} options={{headerShown:false}}/>
+      <Stack.Screen name="LogIn" component={LoginUser} options={{headerShown:false}}/>
+      <Stack.Screen name="Details" component={EnterDetails} options={{headerShown:false}}/>
+      <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+     
     </Stack.Navigator>
   );
 };

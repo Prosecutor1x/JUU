@@ -1,5 +1,4 @@
 import {View, Text, Button, StyleSheet, Image} from 'react-native';
-
 import {AuthContext} from '../../../components/context';
 import {BarCodeScanner} from 'expo-barcode-scanner';
 import React, {useState, useEffect} from 'react';
@@ -12,7 +11,6 @@ const qrSize = width * 0.7;
 
 const Home = () => {
   const navh = useNavigation();
-  const {signOut} = React.useContext(AuthContext);
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Not yet scanned');
@@ -72,9 +70,7 @@ const Home = () => {
       </View>
       <Button
         title="signout"
-        onPress={() => {
-          signOut();
-        }}
+       
       />
       <Button title="cart" onPress={() => navh.navigate('Cart')} />
     </View>
