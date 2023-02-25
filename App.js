@@ -145,22 +145,22 @@ export default function App() {
             animation="bounceIn"
             duraton="500"
             delay={400}
-            source={require('../JUUuser/src/assets/images/path24.png')}
+            source={require('./src/assets/images/path24.png')}
             style={{height: 136, width: 186, marginTop: '40%', left: 40}}
           />
           <Animatable.View animation="slideInRight" style={{marginTop: '40%'}}>
             <Image
-              source={require('../JUUuser/src/assets/images/g26.png')}
+              source={require('./src/assets/images/g26.png')}
               resizeMode="contain"
               style={styles.ir}
             />
             <Image
-              source={require('../JUUuser/src/assets/images/g30.png')}
+              source={require('./src/assets/images/g30.png')}
               resizeMode="contain"
               style={styles.ir}
             />
             <Image
-              source={require('../JUUuser/src/assets/images/g34.png')}
+              source={require('./src/assets/images/g34.png')}
               resizeMode="contain"
               style={styles.ir}
             />
@@ -168,12 +168,12 @@ export default function App() {
         </View>
         <View style={{flexDirection: 'row'}}>
           <Image
-            source={require('../JUUuser/src/assets/images/g38.png')}
+            source={require('./src/assets/images/g38.png')}
             resizeMode="contain"
             style={styles.i}
           />
           <Image
-            source={require('../JUUuser/src/assets/images/g38.png')}
+            source={require('./src/assets/images/g38.png')}
             resizeMode="contain"
             style={styles.i}
           />
