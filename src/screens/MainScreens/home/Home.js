@@ -1,5 +1,4 @@
 import {View, Text, Button, StyleSheet, Image} from 'react-native';
-import {AuthContext} from '../../../components/context';
 import {BarCodeScanner} from 'expo-barcode-scanner';
 import React, {useState, useEffect} from 'react';
 import Constants from 'expo-constants';

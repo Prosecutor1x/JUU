@@ -44,7 +44,7 @@ const OtpVerification = ({val}) => {
   // const signupHandler=(otpNumber)=>{
   //     signUp(otpNumber)
   // }
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.Header}>

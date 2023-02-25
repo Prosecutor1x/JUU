@@ -1,16 +1,14 @@
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
   StatusBar,
   TextInput,
   Linking,
-  ActivityIndicator,
 } from 'react-native';
-import React, {useContext, useEffect} from 'react';
+
 
 import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
