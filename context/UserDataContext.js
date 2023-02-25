@@ -16,6 +16,8 @@ export function useUser() {
 export function userDataContextProvider({ children }) {
   const [userData, setUserData] = useState(defaultValues.userData);
 
+  
+
   return (
     <userDataContext.Provider value={{ userData, setUserData }}>
       {children}
