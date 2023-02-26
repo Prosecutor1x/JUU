@@ -76,21 +76,12 @@ export default function App() {
       </View>
     );
   } else {
-    if (isFirstLaunch == null) {
-      return (
-        <NavigationContainer>
-          <NavS />
-          <StatusBar style="auto" />
-        </NavigationContainer>
-      );
-    } else if (isFirstLaunch == true) {
-      return (
-        <NavigationContainer>
-          <NavS />
-          <StatusBar style="auto" />
-        </NavigationContainer>
-      );
-    }
+   return (
+    <NavigationContainer>
+    <NavS />
+    <StatusBar style="auto" />
+  </NavigationContainer>
+   )
   }
 }
 
