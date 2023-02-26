@@ -4,10 +4,10 @@
     "slug": "JUUuser",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/g16.png",
+    "icon": "./assets/path24.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/g16.png",
+      "image": "./assets/path24.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -22,10 +22,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/g16.png",
+        "foregroundImage": "./assets/path24.png",
         "backgroundColor": "#000000"
       },
       "package": "com.juu.india"
+      
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,5 +36,6 @@
         "projectId": "97e65eb6-e35b-4cd3-bca5-21752bd4c132"
       }
     }
+    
   }
 }

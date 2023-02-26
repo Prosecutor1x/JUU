@@ -9,87 +9,78 @@ import {
   Linking,
 } from 'react-native';
 
-
+import React, {useRef, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
-
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
-
+import firebase from 'firebase/compat';
+import {firebaseConfig} from '../../../config/firebaseconfig';
+import {FirebaseRecaptchaVerifierModal} from 'expo-firebase-recaptcha';
+import OtpVerification from './otpVerification';
 
 const Createaccount = () => {
   const navb = useNavigation();
-  const [number, onChangeNumber] = React.useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [verificationId, setVerificationId] = useState(null);
+  const recaptchaVerifier = useRef(null);
 
-  const [data, setData] = React.useState({
-    mobileNumber: '',
-    check_textInputChange: false,
-    icShown: false,
-  });
-  const textInputChange = (val) => {
-    if (val.length != 1) {
-      setData({
-        ...data,
-        mobileNumber: val,
-        check_textInputChange: true,
-      });
-    } else {
-      setData({
-        ...data,
-        mobileNumber: val,
-        check_textInputChange: false,
-      });
-    }
-  };
-  const iconChange = () => {
-    setData({
-      ...data,
-      icShown: !data.icShown,
-    });
+  const sendVerification = () => {
+    const phoneProvider = new firebase.auth.PhoneAuthProvider();
+    phoneProvider
+      .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
+      .then(setVerificationId)
+      .catch((error) => alert(error.message));
+    setPhoneNumber('');
   };
 
   return (
-  
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
-
-      <View style={styles.imageContainer}>
-        <Animatable.Image
-          animation="bounceIn"
-          duraton="1500"
-          delay={700}
-          source={require('../../assets/images/Saly-25.png')}
-          style={styles.image}
-          resizeMode="contain"
-        />
-      </View>
-
-      <Animatable.View animation={'fadeInUpBig'} style={styles.containersec}>
-        <Text style={styles.login}>Create Account</Text>
-        <Text style={styles.Heading}>Mobile Number</Text>
-        <View style={{flexDirection: 'row'}}>
-          <TextInput
-            style={styles.input}
-            onChangeText={(val) => textInputChange(val)}
-            value={number}
-            keyboardType="numeric"
-            maxLength={10}
-            cursorColor="black"
-            placeholder="Enter Mobile Number"
+      {verificationId == null ? (
+        <>
+       
+          <StatusBar backgroundColor="#009387" barStyle="light-content" />
+          <FirebaseRecaptchaVerifierModal
+            ref={recaptchaVerifier}
+            firebaseConfig={firebaseConfig}
           />
+          <View style={styles.imageContainer}>
+            <Animatable.Image
+              animation="bounceIn"
+              duraton="1500"
+              delay={700}
+              source={require('../../assets/images/Saly-25.png')}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
+          <Animatable.View
+            animation={'fadeInUpBig'}
+            style={styles.containersec}>
+            <Text style={styles.login}>Create Account</Text>
+            <Text style={styles.Heading}>Mobile Number</Text>
+            <View style={{flexDirection: 'row'}}>
+              <TextInput
+                style={styles.input}
+                onChangeText={setPhoneNumber}
+                keyboardType="phonepad"
+                maxLength={13}
+                cursorColor="black"
+                placeholder="Enter Mobile Number with country code"
+              />
 
-          {data.check_textInputChange ? (
+              {/* {data.check_textInputChange ? (
             <Feather
               style={{color: 'green', alignSelf: 'center'}}
               name="check-circle"
               size={18}
               color="black"
             />
-          ) : null}
-        </View>
-        <View style={styles.tc}>
-          <TouchableOpacity onPress={iconChange}>
+          ) : null} */}
+            </View>
+            <View style={styles.tc}>
+              {/* <TouchableOpacity onPress={iconChange}>
             {data.icShown ? (
               <Feather
                 style={styles.icon}
@@ -105,78 +96,87 @@ const Createaccount = () => {
                 color="black"
               />
             )}
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
-          <Text style={styles.tandc}>I agree to all </Text>
-          <Text
-            style={{
-              color: 'red',
-              fontSize: 16,
-              fontWeight: '400',
-              marginVertical: 20,
-              textDecorationLine: 'underline',
-            }}
-            onPress={() => Linking.openURL('http://google.com')}>
-            Terms and Conditions
-          </Text>
-
-          <Text style={styles.tandc}> and </Text>
-          <Text
-            style={{
-              color: 'red',
-              fontSize: 16,
-              fontWeight: '400',
-              marginVertical: 20,
-              textDecorationLine: 'underline',
-            }}
-            onPress={() => Linking.openURL('http://google.com')}>
-            Privacy Policies
-          </Text>
-        </View>
-        <Animatable.View animation={'zoomIn'} style={styles.loginb} delay={500}>
-          <TouchableOpacity
-            style={styles.loginb}
-            onPress={() => {
-              navb.navigate('OTP');
-            }}>
-            <LinearGradient
-              colors={['#ffa500', '#FF5C00']}
-              style={styles.loginb}>
+              <Text style={styles.tandc}>I agree to all </Text>
               <Text
                 style={{
-                  fontSize: 14,
+                  color: 'red',
+                  fontSize: 16,
                   fontWeight: '400',
-                  color: 'white',
-                }}>
-                VERIFY OTP
+                  marginVertical: 20,
+                  textDecorationLine: 'underline',
+                }}
+                onPress={() => Linking.openURL('http://google.com')}>
+                Terms and Conditions
               </Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </Animatable.View>
-        <View style={styles.tc}>
-          <MaterialCommunityIcons
-            style={styles.icon}
-            name="account-check-outline"
-            size={18}
-            color="black"
-          />
-          <Text style={styles.tandc}>Already have an account? </Text>
 
-          <Text
-            style={{
-              color: 'red',
-              fontSize: 16,
-              fontWeight: '400',
-              marginVertical: 20,
-              textDecorationLine: 'underline',
-            }}
-            onPress={() => navb.navigate('LogIn')}>
-            LogIn
-          </Text>
-        </View>
-      </Animatable.View>
-      </View>
-  
+              <Text style={styles.tandc}> and </Text>
+              <Text
+                style={{
+                  color: 'red',
+                  fontSize: 16,
+                  fontWeight: '400',
+                  marginVertical: 20,
+                  textDecorationLine: 'underline',
+                }}
+                onPress={() => Linking.openURL('http://google.com')}>
+                Privacy Policies
+              </Text>
+            </View>
+            <Animatable.View
+              animation={'zoomIn'}
+              style={styles.loginb}
+              delay={500}>
+              <TouchableOpacity
+                style={styles.loginb}
+                onPress={() => {
+                  sendVerification();
+                  console.log(verificationId);
+                }}>
+                <LinearGradient
+                  colors={['#ffa500', '#FF5C00']}
+                  style={styles.loginb}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: '400',
+                      color: 'white',
+                    }}>
+                    VERIFY OTP
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Animatable.View>
+            <View style={styles.tc}>
+              <MaterialCommunityIcons
+                style={styles.icon}
+                name="account-check-outline"
+                size={18}
+                color="black"
+              />
+              <Text style={styles.tandc}>Already have an account? </Text>
+
+              <Text
+                style={{
+                  color: 'red',
+                  fontSize: 16,
+                  fontWeight: '400',
+                  marginVertical: 20,
+                  textDecorationLine: 'underline',
+                }}
+                onPress={() => navb.navigate('LogIn')}>
+                LogIn
+              </Text>
+            </View>
+          </Animatable.View>
+        </>
+      ) : (
+        <>
+          <OtpVerification verificationId={verificationId} />
+        </>
+      )}
+    </View>
   );
 };
 

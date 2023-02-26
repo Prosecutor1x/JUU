@@ -9,42 +9,31 @@ import {
   TextInput,
   Linking,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 import {LinearGradient} from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
-import {AuthContext} from '../../components/context';
+import firebase from 'firebase/compat';
 
-const OtpVerification = ({val}) => {
+const OtpVerification = ({ verificationId}) => {
   const navh = useNavigation();
-  // const {signUp}= React.useContext(AuthContext)
+  const [code, setCode] = useState(null);
 
-  const [data, setData] = React.useState({
-    otpNumber: '',
-    check_textInputChange: false,
-    icShown: false,
-  });
-  const textInputChange = (val) => {
-    if (val.length != 1) {
-      setData({
-        ...data,
-        otpNumber: val,
-        check_textInputChange: true,
+  const confirmCode = () => {
+    const credential = firebase.auth.PhoneAuthProvider.credential(
+      verificationId,
+      code
+    );
+    firebase
+      .auth()
+      .signInWithCredential(credential)
+      .then((result) => {
+        // Do something with the results here
+        console.log(result);
       });
-    } else {
-      setData({
-        ...data,
-        otpNumber: val,
-        check_textInputChange: false,
-      });
-    }
-  };
+  }
 
-  // const signupHandler=(otpNumber)=>{
-  //     signUp(otpNumber)
-  // }
-  
   return (
     <View style={styles.container}>
       <View style={styles.Header}>
@@ -60,11 +49,11 @@ const OtpVerification = ({val}) => {
       <Animatable.View animation={'fadeInUpBig'} style={styles.Footer}>
         <Text style={styles.enter}>Enter OTP</Text>
         <Text style={styles.ins}>
-          Which has been sent to your Mobile Number{val}
+          Which has been sent to your Mobile Number
         </Text>
         <TextInput
           style={styles.input}
-          onChangeText={(val) => textInputChange(val)}
+          onChangeText={setCode}
           keyboardType="numeric"
           maxLength={6}
           cursorColor="black"
@@ -84,7 +73,7 @@ const OtpVerification = ({val}) => {
         <Animatable.View animation={'zoomIn'} style={styles.loginb} delay={500}>
           <TouchableOpacity
             style={styles.loginb}
-            onPress={() => navh.navigate('Details')}>
+            onPress={() =>{ navh.navigate('Details'); confirmCode()}}>
             <LinearGradient
               colors={['#ffa500', '#FF5C00']}
               style={styles.loginb}>
