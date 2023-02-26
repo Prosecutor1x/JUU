@@ -78,12 +78,10 @@ export default function App() {
     );
   } else {
     return (
-      <CartContextProvider>
-        <NavigationContainer>
-          <NavS />
-          <StatusBar style="auto" />
-        </NavigationContainer>
-      </CartContextProvider>
+      <NavigationContainer>
+        <NavS />
+        <StatusBar style="auto" />
+      </NavigationContainer>
 
     )
   }

@@ -109,7 +109,7 @@ const EnterDetails = () => {
           location: '',
 
         }}
-        validationSchema={SignupSchema}
+        
       // onSubmit={values=> Alert.alert(JSON.stringify(values))}
 
       >

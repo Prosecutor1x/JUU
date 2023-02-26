@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator();
 const NavS = () => {
   const navs = useNavigation();
   return (
-    <Stack.Navigator initialRouteName="Home" >
+    <Stack.Navigator initialRouteName="CreateAccount" >
       <Stack.Screen
         name="Onboard"
         component={Obone}
