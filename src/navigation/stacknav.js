@@ -22,12 +22,12 @@ const Stack = createNativeStackNavigator();
 const NavS = () => {
   const navs = useNavigation();
   return (
-    <Stack.Navigator initialRouteName="CreateAccount" >
+    <Stack.Navigator initialRouteName="Home" >
       <Stack.Screen
         name="Onboard"
         component={Obone}
-        options={{ headerShown: false }}
-      />
+        options={{ headerShown: false }}/>
+      
       <Stack.Screen
         name="CreateAccount"
         component={Createaccount}

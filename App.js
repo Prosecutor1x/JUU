@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import NavS from './src/navigation/stacknav';
 import * as Animatable from 'react-native-animatable';
 import { ActivityIndicator } from 'react-native';
+import { CartContextProvider } from './context/CartContext';
 
 export default function App() {
   const [isFirstLaunch, setisFirstLaunch] = React.useState(true);
@@ -76,12 +77,15 @@ export default function App() {
       </View>
     );
   } else {
-   return (
-    <NavigationContainer>
-    <NavS />
-    <StatusBar style="auto" />
-  </NavigationContainer>
-   )
+    return (
+      <CartContextProvider>
+        <NavigationContainer>
+          <NavS />
+          <StatusBar style="auto" />
+        </NavigationContainer>
+      </CartContextProvider>
+
+    )
   }
 }
 

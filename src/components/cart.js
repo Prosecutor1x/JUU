@@ -20,16 +20,16 @@ export const Item = ({item, onPress, backgroundColor, textColor}) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
       <View>
-        <Image source={{uri: item.image}} style={styles.image} />
+        {/* <Image source={{uri: item.image}} style={styles.image} /> */}
       </View>
       <View>
-        <Text style={[styles.title, textColor]}>{item.name}</Text>
-        <Text style={[styles.des, textColor]}>{item.description}</Text>
+        <Text style={[styles.title, textColor]}>{item.category}</Text>
+        {/* <Text style={[styles.des, textColor]}>{item.description}</Text> */}
       </View>
       <View style={styles.price}>
         <Text style={[styles.price, textColor]}> Rs {item.price}</Text>
       </View>
-      <TouchableOpacity onPress={addUserData}><Text>Add Data</Text></TouchableOpacity>
+    
     </TouchableOpacity>
   );
 };

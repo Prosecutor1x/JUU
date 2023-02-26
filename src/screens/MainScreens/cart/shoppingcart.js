@@ -4,10 +4,12 @@ import products from '../../../assets/data/products.json'
 import { Item } from "../../../components/cart";
 import {LinearGradient} from 'expo-linear-gradient';
 import { useNavigation } from "@react-navigation/native";
+import { useCart } from "../../../../context/CartContext";
 
 
 
 const Shoppingcart = () => {
+  const {cartData} = useCart()
   const [selectedId, setSelectedId] = useState(null);
   const navh=useNavigation();
 
@@ -30,7 +32,7 @@ const Shoppingcart = () => {
   return (
     <View style={styles.container} >
       <FlatList
-        data={products}
+        data={cartData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
